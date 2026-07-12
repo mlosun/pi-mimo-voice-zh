@@ -1,5 +1,7 @@
 # pi-mimo-voice-zh
 
+[![npm](https://img.shields.io/npm/v/pi-mimo-voice-zh?style=flat-square)](https://www.npmjs.com/package/pi-mimo-voice-zh)
+
 > ⚠️ **注意**：本项目完全由 AI 生成，作者本人并不懂 TypeScript。如有问题请通过 [Issues](https://github.com/mlosun/pi-mimo-voice-zh/issues) 提出，我会尽力解决。
 >
 > 目前仅支持 MiMo API Key，暂不支持 Token Plan。
@@ -25,10 +27,14 @@ AI 回复完自动朗读。朗读前自动清理 markdown。
 # 1. 安装录音工具
 brew install sox
 
-# 2. 安装扩展
-pi install git:github.com/mlosun/pi-mimo-voice-zh
+# 2. 安装扩展（二选一）
+pi install npm:pi-mimo-voice-zh              # npm（推荐）
+pi install git:github.com/mlosun/pi-mimo-voice-zh  # GitHub
 
 # 3. 创建配置文件
+# npm 安装：
+cp ~/.pi/agent/npm/pi-mimo-voice-zh/mimo-voice-zh.example.json ~/.pi/mimo-voice-zh.json
+# GitHub 安装：
 cp ~/.pi/agent/git/github.com/mlosun/pi-mimo-voice-zh/mimo-voice-zh.example.json ~/.pi/mimo-voice-zh.json
 ```
 

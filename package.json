@@ -1,10 +1,21 @@
 {
   "name": "pi-mimo-voice-zh",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "小米 MiMo 中文语音扩展 — 语音输入（ASR）和语音输出（TTS）",
   "keywords": ["pi-package", "pi-extension", "voice", "tts", "asr", "chinese", "mimo", "xiaomi"],
   "license": "MIT",
+  "author": "mlosun",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlosun/pi-mimo-voice-zh.git"
+  },
   "pi": {
     "extensions": ["."]
-  }
+  },
+  "files": [
+    "index.ts",
+    "package.json",
+    "mimo-voice-zh.example.json",
+    "README.md"
+  ]
 }
