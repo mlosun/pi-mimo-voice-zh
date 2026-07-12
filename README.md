@@ -108,7 +108,7 @@ MiMo ASR 按用量收费，TTS 限时免费。详见 [MiMo 模型定价](https:/
 | 12 | `~/.pi/mimo-voice-zh.json` → `sttEnabled: false` → `/reload` 后按快捷键 | 通知"ASR 已关闭" |
 | 13 | `~/.pi/mimo-voice-zh.json` → `sttShortcut` 改为其他值 → `/reload` | 新快捷键生效，旧键失效 |
 
-### 配置
+### 配置项测试
 
 | # | 场景 | 预期 |
 | --- | ------ | ------ |
