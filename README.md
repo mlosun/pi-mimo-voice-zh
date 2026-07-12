@@ -1,5 +1,7 @@
 # pi-mimo-voice-zh
 
+> ⚠️ **注意**：本项目完全由 AI 生成，作者本人并不懂 TypeScript。如有问题请通过 [Issues](https://github.com/mlosun/pi-mimo-voice-zh/issues) 提出，我会尽力解决。
+
 小米 MiMo 中文语音扩展。
 
 | 操作 | 快捷键 |
