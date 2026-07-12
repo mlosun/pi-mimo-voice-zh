@@ -1,0 +1,8 @@
+{
+  "voice": "冰糖",
+  "apiKey": "",
+  "ttsEnabled": true,
+  "sttEnabled": true,
+  "ttsShortcut": "ctrl+shift+k",
+  "sttShortcut": "ctrl+shift+v"
+}
