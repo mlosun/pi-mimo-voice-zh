@@ -104,6 +104,34 @@ function cleanText(text: string): string {
 		.trim();
 }
 
+// ── 文本分段 ──────────────────────────────────────────────────────
+// MiMo TTS 是 LLM 驱动的，单次调用文本过长会导致模型"跑偏"。
+// 实测 ~3000 字无问题，~10000 字开始乱说。
+// 按段落拆分：段落内语气自然连贯，段落间过渡也比逐句拆分平滑。
+// 遇超长段落再兜底按句子拆分。
+const MAX_CHUNK = 2000;
+
+function splitChunks(text: string): string[] {
+	const paragraphs = text
+		.split(/\n{2,}/)
+		.map((s) => s.trim())
+		.filter(Boolean);
+	const result: string[] = [];
+	for (const p of paragraphs) {
+		if (p.length <= MAX_CHUNK) {
+			result.push(p);
+		} else {
+			// 超长段落兜底：按句子拆分
+			const sentences = p
+				.split(/(?<=[。！？])/)
+				.map((s) => s.trim())
+				.filter(Boolean);
+			for (const s of sentences) result.push(s);
+		}
+	}
+	return result;
+}
+
 // ── MiMo ASR ──────────────────────────────────────────────────────
 async function callASR(wavPath: string): Promise<string | null> {
 	if (!settings.apiKey) return null;
@@ -346,7 +374,7 @@ export default function mimoVoiceZh(pi: ExtensionAPI) {
 			.join("");
 		const cleaned = cleanText(text);
 		if (!cleaned) return;
-		speakSentences([cleaned]);
+		speakSentences(splitChunks(cleaned));
 	});
 
 	pi.on("session_shutdown", () => {
