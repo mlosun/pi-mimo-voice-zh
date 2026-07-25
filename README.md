@@ -102,6 +102,8 @@ MiMo TTS 是 LLM 驱动的语音合成，底层走的是 Chat Completions 端点
 | 🔔 TTS 开启 | 语音输出已开启 |
 | 🔕 TTS 关闭 | 语音输出已关闭 |
 | 🔴 正在录音 | 录音中 |
+| 🔊 朗读中 | TTS 正在播放 |
+| 🔊 朗读 2/5 | TTS 分段播放进度（第 2 段 / 共 5 段） |
 
 ## 功能清单
 
@@ -138,6 +140,22 @@ MiMo TTS 是 LLM 驱动的语音合成，底层走的是 Chat Completions 端点
 | 17 | 手动在 `~/.pi/mimo-voice-zh.json` 添加额外字段，操作后检查 | 额外字段不被删除（merge 保存） |
 
 ## 更新日志
+
+### 0.0.5
+
+- **兼容性修复**：`notify` 类型参数从 `"success"` 改为 `"info"`，适配 pi v0.80.8+ ExtensionAPI 类型约束
+- **修复**：TTS 播放失败时临时 WAV 文件泄漏（`playWav` error 回调增加文件清理）
+- **修复**：临时目录残留问题。新增 `cleanupOldTmpDirs` 清理超过 1 小时的旧目录，`cleanTmpDir` 在加载和退出时清空当前目录
+- **新增**：TTS/ASR API 请求增加 30 秒超时（`AbortSignal.timeout`），防止网络异常时无限挂起
+- **新增**：ASR 失败时通知用户"请检查网络或 API Key"，不再静默跳过
+- **新增**：`cleanText` 增强——移除图片链接 `![](url)`、链接保留文字 `[text](url)` → `text`、移除 HTML 标签
+- **新增**：`session_start` 时校验 `voice` 配置，无效音色自动重置为"冰糖"并通知用户
+- **新增**：多段朗读时状态栏显示进度 `🔊 朗读 2/5`
+- **优化**：录音文件发现从 `readdirSync` + `filter` 改为 `recordingPath` 变量精确记录
+- **优化**：录音停止后的 500ms 硬编码等待改为进程状态监听
+- **优化**：`speakSentences` 递归改为 `speakChunks` 循环，消除深层 async 调用栈
+- **优化**：类型标注——`sttHandler` 参数从 `any` 改为 `ExtensionContext`，移除多余的 `any` 断言
+- **优化**：包结构——新增 `.gitignore`、添加 `peerDependencies`、`pi.extensions` 精确指向 `./index.ts`
 
 ### 0.0.4
 
