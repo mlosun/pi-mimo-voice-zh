@@ -9,8 +9,11 @@
     "type": "git",
     "url": "git+https://github.com/mlosun/pi-mimo-voice-zh.git"
   },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*"
+  },
   "pi": {
-    "extensions": ["."]
+    "extensions": ["./index.ts"]
   },
   "files": [
     "index.ts",
